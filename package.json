@@ -1,0 +1,32 @@
+{
+  "name": "ethical-composer-middleware-server-manager",
+  "version": "0.0.0",
+  "description": "Dev server manager middleware for the Ethical framework composer.",
+  "main": "./dist/index.js",
+  "scripts": {
+    "test": "npm run build && npm run build-test && nutra --config ./nutra.config.js && npm run prepublish",
+    "test-debugger": "DEBUG=1 node --inspect-brk ./node_modules/.bin/nutra --config ./nutra.config.js",
+    "build": "babel ./src --out-dir ./dist --source-maps",
+    "build-test": "babel ./test/files/src --out-dir ./test/files/dist --source-maps",
+    "prepublish": "npm run build"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Ethically/ethical-composer-middleware-server-manager.git"
+  },
+  "author": "m-a-r-c-e-l-i-n-o <me@marceli.no>",
+  "license": "ISC",
+  "devDependencies": {
+    "babel-cli": "^6.24.0",
+    "babel-plugin-transform-object-rest-spread": "^6.23.0",
+    "babel-preset-env": "^1.6.0",
+    "ethical-utility-server": "0.0.0",
+    "node-fetch": "^1.7.3",
+    "nutra": "0.0.14",
+    "nutra-jasmine-coverage-babel-preset": "0.0.10"
+  },
+  "dependencies": {
+    "ethical-utility-path": "0.0.0",
+    "ethical-utility-process-exit": "0.0.0"
+  }
+}
