@@ -6,7 +6,7 @@ const startServer = ({ file, onError }) => (
         const startupError = (code) => {
             reject(new Error('Server stopped unexpectedly on startup!'))
         }
-        const server = fork( join( process.cwd(), 'dist', 'server.js' ) )
+        const server = fork(join( __dirname, 'server.js'))
         server.on('close', startupError)
         server.on('message', () => {
             const unexpectedError = () => {

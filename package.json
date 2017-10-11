@@ -1,10 +1,10 @@
 {
   "name": "ethical-composer-middleware-server-manager",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "description": "Dev server manager middleware for the Ethical framework composer.",
   "main": "./dist/index.js",
   "scripts": {
-    "test": "npm run build && npm run build-test && nutra --config ./nutra.config.js && npm run prepublish",
+    "test": "NODE_ENV=test nyc --reporter=text --reporter=html mocha test/specs/**/*.js && npm run prepublish",
     "test-debugger": "DEBUG=1 node --inspect-brk ./node_modules/.bin/nutra --config ./nutra.config.js",
     "build": "babel ./src --out-dir ./dist --source-maps",
     "build-test": "babel ./test/files/src --out-dir ./test/files/dist --source-maps",
@@ -18,15 +18,25 @@
   "license": "ISC",
   "devDependencies": {
     "babel-cli": "^6.24.0",
+    "babel-plugin-istanbul": "^4.1.5",
     "babel-plugin-transform-object-rest-spread": "^6.23.0",
     "babel-preset-env": "^1.6.0",
+    "babel-register": "^6.26.0",
+    "chai": "^4.1.2",
     "ethical-utility-server": "0.0.0",
+    "mocha": "^4.0.1",
     "node-fetch": "^1.7.3",
-    "nutra": "0.0.14",
-    "nutra-jasmine-coverage-babel-preset": "0.0.10"
+    "nyc": "^11.2.1"
   },
   "dependencies": {
     "ethical-utility-path": "0.0.0",
     "ethical-utility-process-exit": "0.0.0"
+  },
+  "nyc": {
+    "require": [
+      "babel-register"
+    ],
+    "sourceMap": false,
+    "instrument": false
   }
 }
